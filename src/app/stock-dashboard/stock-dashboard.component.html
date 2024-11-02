@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>Historical Stock Prices Dashboard</h1>
+    
+    <select [(ngModel)]="selectedCompany" (change)="fetchStockData()">
+      <option *ngFor="let company of companies" [value]="company">{{ company }}</option>
+    </select>
+    
+    <div *ngIf="stockData">
+      <h2>{{ selectedCompany }} Daily Prices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Open</th>
+            <th>High</th>
+            <th>Low</th>
+            <th>Close</th>
+            <th>Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let day of stockData">
+              <td>{{ day.date }}</td>
+              <td>{{ day.open }}</td>
+              <td>{{ day.high }}</td>
+              <td>{{ day.low }}</td>
+              <td>{{ day.close }}</td>
+              <td>{{ day.volume }}</td>
+            </tr>
+          </tbody>
+      </table>
+      
+      <div>
+        <h1>Company Close Prices Pie Chart</h1>
+        <canvas  id="pieChart" width="30" height="30"></canvas>
+      </div>
+    </div>
+  </div>
+  
